@@ -2,44 +2,32 @@ version: '3.8'
 services:
 
   db:
-      build: ./mysql
-      container_name: mysql_db
-      restart: always
-      volumes:
-        - ./sharevolume/mysql:/var/lib/mysql
-      ports:
-        - 3306:3306
-      environment:
-        - MYSQL_ROOT_PASSWORD=1234
+    build: ./mysql
+    container_name: mysql_db
+    restart: always
+    volumes:
+      - ./sharevolume/mysql:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
 
   php:
-      build: ./php/
-      container_name: php_server
-      restart: always
-      depends_on:
-        - db
-      volumes:
-        - ./sharevolume/public_html:/var/www/html
-      ports:
-        - 9000:80
-
-  nginx:
-      image: nginx:alpine
-      container_name: lemp_nginx
-      restart: always
-      volumes:
-        - ./nginx/conf/nginx.conf:/etc/nginx/conf/nginx.conf:ro
-        - ./nginx/conf.d:/etc/nginx/conf.d:ro
-      volumes_from:
-        - php
-      ports:
-        - 80:80
+    build: ./php
+    container_name: php_server
+    restart: always
+    depends_on:
+      - db
+    volumes:
+      - ./public_html:/var/www/html
+    ports:
+      - 80:80
 
   pma:
-      image: phpmyadmin/phpmyadmin
-      container_name: lemp-phpmyadmin
-      restart: always
-      depends_on:
-        - db
-      ports:
-        - 8000:80
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin_app
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - 8000:80

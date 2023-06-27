@@ -1,1 +1,3 @@
-FROM mysql:8.0.33-debian
+FROM mysql:8
+
+EXPOSE 3306
