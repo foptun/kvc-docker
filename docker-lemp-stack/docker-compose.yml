@@ -1,16 +1,16 @@
 version: '3.8'
 services:
 
-  db:
-    build: ./mysql
-    container_name: mysql_db
-    restart: always
-    volumes:
-      - ./sharevolume/mysql:/var/lib/mysql
-    ports:
-      - 3306:3306
-    environment:
-      - MYSQL_ROOT_PASSWORD=1234
+#  db:
+#    build: ./mysql
+#    container_name: mysql_db
+#    restart: always
+#    volumes:
+#      - ./sharevolume/mysql:/var/lib/mysql
+#    ports:
+#      - 3306:3306
+#    environment:
+#      - MYSQL_ROOT_PASSWORD=1234
 
   php:
     build: ./php
@@ -23,11 +23,11 @@ services:
     ports:
       - 80:80
 
-  pma:
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin_app
-    restart: always
-    depends_on:
-      - db
-    ports:
-      - 8000:80
+#  pma:
+#    image: phpmyadmin/phpmyadmin
+#    container_name: phpmyadmin_app
+#    restart: always
+#    depends_on:
+#      - db
+#    ports:
+#      - 8000:80
