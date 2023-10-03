@@ -16,8 +16,8 @@ services:
     build: ./php
     container_name: php_server
     restart: always
-    depends_on:
-      - db
+#    depends_on:
+#      - db
     volumes:
       - ./public_html:/var/www/html
     ports:
